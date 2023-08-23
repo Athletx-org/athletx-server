@@ -52,22 +52,6 @@ const AthleteSchema = Schema(
     },
 
     refresh_token: String,
-  },
-  {
-    virtuals: {
-      full_name: {
-        get() {
-          return this.first_name + " " + this.last_name;
-        },
-      },
-
-      id: {
-        get() {
-          return this._id;
-        },
-      },
-    },
-    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
 );
 
