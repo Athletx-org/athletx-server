@@ -8,6 +8,7 @@ const port = 3000;
 connectDB()
 
 app.use(express.json())
+app.use(cors());
 app.use('/api/auth', require('./routes/api/auth'))
 
 mongoose.connection.once('open', ()=>{
