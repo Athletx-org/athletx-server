@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb+srv://athletx:athletx@athletx.ipgocbt.mongodb.net/?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://athletx:athletx@athletx.ipgocbt.mongodb.net/AthletX?retryWrites=true&w=majority'
 
 async function connect(){
   try {
