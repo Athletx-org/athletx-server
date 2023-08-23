@@ -7,6 +7,8 @@ const port = 3000;
 
 connectDB()
 
+app.use('/api/auth', require('./routes/api/auth'))
+
 mongoose.connection.once('open', ()=>{
   console.log('DB connected')
   app.listen(port, () => { console.log(`Listening on port ${port}`) })
