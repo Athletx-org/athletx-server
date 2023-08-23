@@ -1,9 +1,13 @@
-// app.js
-const express = require('express');
+const express = require('express')
+const mongoose = require('mongoose')
+const connectDB = require('./config/database')
+
 const app = express();
 const port = 3000;
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+connectDB()
+
+mongoose.connection.once('open', ()=>{
+  console.log('DB connected')
+  app.listen(port, () => { console.log(`Listening on port ${port}`) })
+})
