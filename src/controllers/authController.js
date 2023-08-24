@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
 const Athlete = require("../models/Athlete");
 const Instructor = require("../models/Instructor");
+const config = require("../config/auth");
+const tokenService = require("../services/token-service");
+const jwt = require("jsonwebtoken");
 
 async function registerAthlete(req, res) {
   await registerUser(req, res, Athlete);
@@ -9,7 +12,6 @@ async function registerAthlete(req, res) {
 async function registerInstructor(req, res) {
   await registerUser(req, res, Instructor);
 }
-
 
 async function loginAthlete(req, res) {
   await authenticateUser(req, res, Athlete);
@@ -80,22 +82,42 @@ async function authenticateUser(req, res, User) {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(422).json({ message: 'Invalid fields' });
+    return res.status(422).json({ message: "Invalid fields" });
   }
 
   const user = await User.findOne({ email }).exec();
 
   if (!user) {
-    return res.status(401).json({ message: 'Email or password is incorrect' });
+    return res.status(401).json({ message: "Email or password is incorrect" });
   }
 
   const match = await bcrypt.compare(password, user.password);
 
   if (!match) {
-    return res.status(401).json({ message: 'Email or password is incorrect' });
+    return res.status(401).json({ message: "Email or password is incorrect" });
   }
 
-  return res.sendStatus(200);
+  tokenService
+    .generateToken(user)
+    .then((token) => {
+      user.token = token;
+    })
+    .catch((error) => {
+      return res.sendStatus(400);
+    });
+
+  await user.save();
+  return res
+    .cookie("auth", user.token, {
+      httpOnly: true, // to disable accessing cookie via client side js
+      secure: true, // to force https (if you use it)
+    })
+    .sendStatus(200);
 }
 
-module.exports = { registerAthlete, registerInstructor, loginAthlete, loginInstructor };
+module.exports = {
+  registerAthlete,
+  registerInstructor,
+  loginAthlete,
+  loginInstructor,
+};
