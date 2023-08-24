@@ -51,7 +51,7 @@ const AthleteSchema = Schema(
       required: true
     },
 
-    refresh_token: String,
+    token: String,
   }
 );
 

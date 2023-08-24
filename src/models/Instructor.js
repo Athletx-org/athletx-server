@@ -41,7 +41,7 @@ const InstructorSchema = Schema(
       required: true
     },
 
-    refresh_token: String,
+    token: String,
   }
 );
 
