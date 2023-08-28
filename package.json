@@ -23,7 +23,7 @@
     "mongoose": "^7.4.4"
   },
   "devDependencies": {
-    "semantic-release-preconfigured-conventional-commits": "1.1.46"
+    "semantic-release-preconfigured-conventional-commits": "1.1.47"
   },
   "engines": {
     "node": "18.17"
