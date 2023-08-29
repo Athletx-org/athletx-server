@@ -1,8 +1,7 @@
-const jwt = require("jsonwebtoken");
-const config = require("../config/auth");
 const tokenService = require("../services/token-service");
 
 function authenticate(req, res, next) {
+  console.log("middleware")
   let token = req.cookies.auth;
   if (!token) {
     return res.status(401).json({
@@ -13,6 +12,7 @@ function authenticate(req, res, next) {
     .then((result) => {
       if (result.success) {
         console.log("Token is valid. User ID:", result.userId);
+        next()
       } else {
         console.error("Token validation failed:", result.errorMessage);
       }
@@ -20,7 +20,6 @@ function authenticate(req, res, next) {
     .catch((error) => {
       console.error("Error during token validation:", error);
     });
-    next()
 }
 
-module.exports = {authenticate}
+module.exports = authenticate

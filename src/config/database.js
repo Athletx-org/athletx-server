@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb+srv://athletx:athletx@athletx.ipgocbt.mongodb.net/AthletX?retryWrites=true&w=majority'
+const connectionString = process.env.mongodb_connection_string
 
 async function connect(){
   try {

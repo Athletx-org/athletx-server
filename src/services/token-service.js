@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth");
 
-const secret = config.secret;
-const tokenDuration = process.env.JWT_DURATION || "30d";
+const tokenDuration = process.env.JWT_DURATION;
 
 function generateToken(user) {
   return new Promise(function (resolve, reject) {
@@ -13,7 +11,7 @@ function generateToken(user) {
       expiresIn: tokenDuration,
       algorithm: "HS256",
     };
-    jwt.sign(jwtPayload, secret, jwtOptions, function (err, token) {
+    jwt.sign(jwtPayload, process.env.jwtKey, jwtOptions, function (err, token) {
       if (err) {
         reject(err);
       } else {

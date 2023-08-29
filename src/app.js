@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const mongoose = require('mongoose')
 const connectDB = require('./config/database')
@@ -13,7 +14,7 @@ connectDB()
 app.use(express.json())
 app.use(cors());
 app.use(cookieParser());
-app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api/v1/auth', require('./routes/api/auth'))
 
 mongoose.connection.once('open', ()=>{
   console.log('DB connected')
