@@ -6,7 +6,6 @@ const tokenService = require("../services/token-service");
 const jwt = require("jsonwebtoken");
 
 async function athleteInfo(req, res){
-  console.log("entrato correttamente")
   return res.sendStatus(200)
 }
 

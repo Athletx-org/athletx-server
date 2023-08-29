@@ -23,7 +23,7 @@ function generateToken(user) {
 
 function validateToken(token) {
   return new Promise(function (resolve, reject) {
-    jwt.verify(token, secret, function (err, decoded) {
+    jwt.verify(token, process.env.jwtKey, function (err, decoded) {
       if (err) {
         resolve({
           success: false,
