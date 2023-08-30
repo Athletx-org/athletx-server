@@ -96,12 +96,10 @@ async function login(req, res) {
   return res.json({ user: user });
 }
 
-async function logout(req, res, User) {
+async function logout(req, res) {
   const body = req.body;
   const email = body.email;
-  console.log(email);
   const user = await User.findOne({ email: email }).exec();
-  console.log(user);
   user.token = null;
   await user.save();
   res.sendStatus(204);
