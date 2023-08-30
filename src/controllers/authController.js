@@ -1,39 +1,12 @@
 const bcrypt = require("bcrypt");
-const Athlete = require("../models/Athlete");
-const Instructor = require("../models/Instructor");
-const config = require("../config/auth");
+const User = require("../models/User");
 const tokenService = require("../services/token-service");
-const jwt = require("jsonwebtoken");
 
-async function athleteInfo(req, res){
-  return res.sendStatus(200)
+async function athleteInfo(req, res) {
+  return res.sendStatus(200);
 }
 
-async function registerAthlete(req, res) {
-  await registerUser(req, res, Athlete);
-}
-
-async function registerInstructor(req, res) {
-  await registerUser(req, res, Instructor);
-}
-
-async function loginAthlete(req, res) {
-  await authenticateUser(req, res, Athlete);
-}
-
-async function loginInstructor(req, res) {
-  await authenticateUser(req, res, Instructor);
-}
-
-async function logoutAthlete(req, res){
-  await logoutUser(req, res, Athlete)
-}
-
-async function logoutInstructor(req, res){
-  await logoutUser(req, res, Instructor)
-}
-
-async function registerUser(req, res, User) {
+async function signup(req, res) {
   const {
     email,
     name,
@@ -65,7 +38,7 @@ async function registerUser(req, res, User) {
   }
 
   const userExists = await User.exists({ email }).exec();
-  console.log(userExists)
+  console.log(userExists);
   if (userExists) {
     return res.sendStatus(409);
   }
@@ -85,13 +58,12 @@ async function registerUser(req, res, User) {
     });
     return res.sendStatus(201);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(400).json({ message: "Could not register" });
   }
 }
 
-async function authenticateUser(req, res, User) {
-  console.log("body" + req.body)
+async function login(req, res) {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -116,30 +88,28 @@ async function authenticateUser(req, res, User) {
       user.token = token;
     })
     .catch((error) => {
+      console.log(error);
       return res.sendStatus(400);
     });
 
   await user.save();
-  return res.json({user: user})
+  return res.json({ user: user });
 }
 
-async function logoutUser(req, res, User){
-  const body = req.body
-  const email = body.email
-  console.log(email)
-  const user = await User.findOne({email: email}).exec()
-  console.log(user)
-  user.token = null
-  await user.save()
-  res.sendStatus(204)
+async function logout(req, res, User) {
+  const body = req.body;
+  const email = body.email;
+  console.log(email);
+  const user = await User.findOne({ email: email }).exec();
+  console.log(user);
+  user.token = null;
+  await user.save();
+  res.sendStatus(204);
 }
 
 module.exports = {
-  registerAthlete,
-  registerInstructor,
-  loginAthlete,
-  loginInstructor,
-  logoutAthlete,
-  logoutInstructor, 
-  athleteInfo
+  login,
+  signup,
+  logout,
+  athleteInfo,
 };
