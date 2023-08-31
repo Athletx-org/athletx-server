@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const UserInfo = require("../models/UserInfo"); 
 const tokenService = require("../services/token-service");
+const UserWorkout = require("../models/UserWorkout");
+const Workout = require("../models/Workout");
 
 async function athleteInfo(req, res) {
   return res.sendStatus(200);
@@ -38,7 +41,6 @@ async function signup(req, res) {
   }
 
   const userExists = await User.exists({ email }).exec();
-  console.log(userExists);
   if (userExists) {
     return res.sendStatus(409);
   }
@@ -48,6 +50,11 @@ async function signup(req, res) {
 
     await User.create({
       email,
+      password: hashedPassword,
+    });
+
+    await UserInfo.create({
+      email,
       name,
       surname,
       height,
@@ -56,6 +63,20 @@ async function signup(req, res) {
       gender,
       password: hashedPassword,
     });
+
+    const workout = await Workout.create({
+      name: "Workout"
+    })
+
+    console.log(workout.id)
+
+    const usWorkout = await UserWorkout.create({
+      email
+    })
+
+    usWorkout
+    
+
     return res.sendStatus(201);
   } catch (error) {
     console.log(error);
