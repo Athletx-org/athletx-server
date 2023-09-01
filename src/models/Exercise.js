@@ -1,4 +1,5 @@
-const { Schema } = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const ExerciseSchema = Schema({
   name: {
@@ -8,7 +9,7 @@ const ExerciseSchema = Schema({
 
   muscle: {
     type: String,
-    required: true,
+    required: false,
   },
 
   type: {
@@ -17,4 +18,4 @@ const ExerciseSchema = Schema({
   },
 });
 
-module.exports = mongoose.model("Exercise", ExerciseSchema, "exercise");
+module.exports = mongoose.model("Exercise", ExerciseSchema, "exercises");

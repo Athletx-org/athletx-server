@@ -11,7 +11,6 @@ function authenticate (req, res, next) {
       .validateToken(token)
       .then(result => {
         if (result.success) {
-          console.log('Token is valid. User ID:', result.userId)
           next()
         } else {
           console.error('Token validation failed:', result.errorMessage)

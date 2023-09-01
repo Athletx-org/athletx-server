@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(apiPath + "/auth", require("./routes/api/auth"));
+app.use(apiPath + "/:userId/workouts", require("./routes/api/workouts"))
 
 mongoose.connection.once("open", () => {
   console.log("DB connected");

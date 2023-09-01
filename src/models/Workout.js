@@ -15,7 +15,7 @@ const WorkoutSchema = Schema({
 
   description: {
     type: String,
-    required: false,
+    required: true,
   },
 
   duration: {
