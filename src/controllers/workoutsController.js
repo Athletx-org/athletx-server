@@ -2,6 +2,7 @@ const Workout = require("../models/Workout");
 const Training = require("../models/Training");
 const Exercise = require("../models/Exercise");
 const ExerciseExecution = require("../models/ExerciseExecution");
+const ActiveWorkout = require("../models/ActiveWorkout");
 
 async function getAllWorkouts(req, res) {
   Workout.find({ userId: req.params.userId }).then((workout, err) => {
@@ -12,6 +13,7 @@ async function getAllWorkouts(req, res) {
     res.json(workout);
   });
 }
+
 async function getWorkout(req, res) {
   Workout.findById(req.params.workoutId)
     .populate({
@@ -34,6 +36,18 @@ async function getWorkout(req, res) {
       res.json(workout);
     });
 }
+
+async function getCurrentWorkout(req, res) {
+  ActiveWorkout.findOne({userId: req.params.userId})
+    .then((workout, err) => {
+      if (err) {
+        console.error("Errore nella query di ricerca:", err);
+        return res.status(500).json({ error: "Errore nella query di ricerca" });
+      }
+      res.json(workout);
+    });
+}
+
 async function createWorkout(req, res) {
   const data = req.body;
 
