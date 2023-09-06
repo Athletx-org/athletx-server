@@ -38,12 +38,13 @@ async function getWorkout(req, res) {
 }
 
 async function getCurrentWorkout(req, res) {
-  ActiveWorkout.find({}).then((workout, err) => {
+  ActiveWorkout.find({ userId: req.params.userId }).then((workout, err) => {
     if (err) {
       console.error("Errore nella query di ricerca:", err);
       return res.status(500).json({ error: "Errore nella query di ricerca" });
+    } else {
+      res.json(workout);
     }
-    res.json(workout);
   });
 }
 
