@@ -38,14 +38,24 @@ async function getWorkout(req, res) {
 }
 
 async function getCurrentWorkout(req, res) {
-  ActiveWorkout.findOne({userId: req.params.userId})
-    .then((workout, err) => {
-      if (err) {
-        console.error("Errore nella query di ricerca:", err);
-        return res.status(500).json({ error: "Errore nella query di ricerca" });
-      }
-      res.json(workout);
-    });
+  ActiveWorkout.find({}).then((workout, err) => {
+    if (err) {
+      console.error("Errore nella query di ricerca:", err);
+      return res.status(500).json({ error: "Errore nella query di ricerca" });
+    }
+    res.json(workout);
+  });
+}
+
+async function setCurrentWorkout(req, res) {
+  const data = req.body
+  const currentWorkout = ActiveWorkout.create({
+    userId: data.userId,
+    workoutId: data.workoutId,
+    startingDate: data.startingDate,
+    endingDate: data.endingDate
+  })
+  res.sendStatus(200)
 }
 
 async function createWorkout(req, res) {
@@ -145,6 +155,8 @@ async function createTraining(workoutId) {
 module.exports = {
   getAllWorkouts,
   getWorkout,
+  getCurrentWorkout,
+  setCurrentWorkout,
   createWorkout,
   deleteWorkout,
 };
