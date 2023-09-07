@@ -3,26 +3,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ActiveWorkoutSchema = Schema({
-  userId: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  userId:{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 
   workoutId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Workout",
   },
 
   startingDate: {
     type: Date,
-    required: true,
+    required: false,
   },
 
   endingDate: {
     type: Date,
-    required: true,
+    required: false,
   },
 });
 

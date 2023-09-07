@@ -38,7 +38,7 @@ async function getWorkout(req, res) {
 }
 
 async function getCurrentWorkout(req, res) {
-  ActiveWorkout.find({ userId: req.params.userId }).then((workout, err) => {
+  ActiveWorkout.findOne({ userId: req.params.userId }).populate("workoutId").then((workout, err) => {
     if (err) {
       console.error("Errore nella query di ricerca:", err);
       return res.status(500).json({ error: "Errore nella query di ricerca" });
@@ -50,12 +50,14 @@ async function getCurrentWorkout(req, res) {
 
 async function setCurrentWorkout(req, res) {
   const data = req.body
-  const currentWorkout = ActiveWorkout.create({
-    userId: data.userId,
-    workoutId: data.workoutId,
-    startingDate: data.startingDate,
-    endingDate: data.endingDate
-  })
+  await ActiveWorkout.findOneAndUpdate(
+    {userId: data.userId },
+    { workoutId: data.workoutId,
+      startingDate: data.startingDate,
+      endingDate: data.endingDate
+    },
+    { new: true}
+  )
   res.sendStatus(200)
 }
 
@@ -72,7 +74,6 @@ async function createWorkout(req, res) {
 
   for (const train of data.trainings) {
     const training = await createTraining(workout.id);
-    console.log(training.id);
     for (const exercise of train.exercises) {
       await createExerciseExecution(training.id, exercise);
     }
@@ -89,6 +90,7 @@ async function deleteWorkout(req, res) {
     if (!workout) {
       return res.status(404).json({ message: "Workout not found" });
     }
+    await ActiveWorkout.deleteMany({workoutId: workoutId})
     const trainingIds = workout.trainings;
 
     for (const trainingId of trainingIds) {
