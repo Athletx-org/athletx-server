@@ -81,6 +81,23 @@ async function createWorkout(req, res) {
   res.sendStatus(200);
 }
 
+async function updateWorkout(req, res) {
+  const data = req.body
+  await Workout.findOneAndUpdate(
+    {_id: req.params.workoutId},
+    {
+      name: data.name,
+      difficulty: data.difficulty,
+      description: data.description,
+      duration: data.duration,
+    }
+  )
+  /**
+   * TODO:  MODIFICARE  ANCHE I TRANINGS E GLI ESERCIZI COME NELLA CREAZIONE
+   */
+  res.sendStatus(200)
+}
+
 async function deleteWorkout(req, res) {
   try {
     const workoutId = req.params.workoutId;
@@ -162,4 +179,5 @@ module.exports = {
   setCurrentWorkout,
   createWorkout,
   deleteWorkout,
+  updateWorkout
 };
