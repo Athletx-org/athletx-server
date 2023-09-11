@@ -17,6 +17,7 @@ app.use(apiPath + "/auth", require("./routes/api/auth"));
 app.use(apiPath + "/:userId/workouts", require("./routes/api/workouts"))
 app.use(apiPath + "/exercises", require("./routes/api/exercises"))
 app.use(apiPath + "/users", require("./routes/api/users"))
+app.use(apiPath + "/:userId/goals", require("./routes/api/goal"))
 
 mongoose.connection.once("open", () => {
   console.log("DB connected");
