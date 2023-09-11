@@ -82,26 +82,49 @@ async function createWorkout(req, res) {
 }
 
 async function updateWorkout(req, res) {
-  const data = req.body
-  await Workout.findOneAndUpdate(
-    {_id: req.params.workoutId},
-    {
-      name: data.name,
-      difficulty: data.difficulty,
-      description: data.description,
-      duration: data.duration,
+  try {
+    const workoutId = req.params.workoutId;
+    const workout = await Workout.findById(workoutId);
+    if (!workout) {
+      return res.status(404).json({ message: "Workout not found" });
     }
-  )
-/*     for (const training of data.trainings) {
-      // unica cosa aggiungere o rimuovere dei training perchè altrimenti 
-      // se modifichi il training dentro cambia solo la collezione degli exerciseExecution
-      for (const exercise of training.exercises) {
-        // vedere se è cambiata l'esecuzione
+    const trainingIds = workout.trainings;
+    for (const trainingId of trainingIds) {
+      const training = await Training.findById(trainingId);
+      if (!training) {
+        console.log(`Training with ID ${trainingId} not found.`);
+        continue;
       }
-    } */
-  /**
-   * TODO:  MODIFICARE  ANCHE I TRANINGS E GLI ESERCIZI COME NELLA CREAZIONE
-   */
+
+      const exerciseIds = training.exercises;
+      await ExerciseExecution.deleteMany({ _id: { $in: exerciseIds } });
+      await Training.findByIdAndRemove(trainingId);
+    }
+    const deletedWorkout = await Workout.findByIdAndRemove(workoutId);
+    if (deletedWorkout) {
+      const data = req.body;
+      const updatedWorkout = await Workout.create({
+        _id: workoutId,
+        name: data.name,
+        difficulty: data.difficulty,
+        description: data.description,
+        duration: data.duration,
+        userId: req.params.userId,
+      });
+    
+      for (const train of data.trainings) {
+        const training = await createTraining(updatedWorkout.id);
+        for (const exercise of train.exercises) {
+          await createExerciseExecution(training.id, exercise);
+        }
+      }
+      return res.sendStatus(204);
+    } else {
+      return res.status(404).json({ message: "Workout not found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Error updating workout" });
+  }
   res.sendStatus(200)
 }
 

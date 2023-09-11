@@ -8,7 +8,7 @@ router.get("/:workoutId", workoutsController.getWorkout);
 router.get("/info/current", workoutsController.getCurrentWorkout)
 router.post("/", authenticate, workoutsController.createWorkout);
 router.post("/current", authenticate, workoutsController.setCurrentWorkout)
-router.post("/:workoutId/update", authenticate, workoutsController.updateWorkout)
+router.patch("/:workoutId", authenticate, workoutsController.updateWorkout)
 router.delete("/:workoutId", authenticate, workoutsController.deleteWorkout)
 
 module.exports = router;
