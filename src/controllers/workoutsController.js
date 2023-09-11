@@ -56,7 +56,10 @@ async function setCurrentWorkout(req, res) {
       startingDate: data.startingDate,
       endingDate: data.endingDate
     },
-    { new: true}
+    { 
+      new: true,
+      upsert: true
+    }
   )
   res.sendStatus(200)
 }
@@ -125,7 +128,6 @@ async function updateWorkout(req, res) {
   } catch (err) {
     return res.status(500).json({ message: "Error updating workout" });
   }
-  res.sendStatus(200)
 }
 
 async function deleteWorkout(req, res) {
