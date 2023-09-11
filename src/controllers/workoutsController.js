@@ -92,6 +92,13 @@ async function updateWorkout(req, res) {
       duration: data.duration,
     }
   )
+/*     for (const training of data.trainings) {
+      // unica cosa aggiungere o rimuovere dei training perchè altrimenti 
+      // se modifichi il training dentro cambia solo la collezione degli exerciseExecution
+      for (const exercise of training.exercises) {
+        // vedere se è cambiata l'esecuzione
+      }
+    } */
   /**
    * TODO:  MODIFICARE  ANCHE I TRANINGS E GLI ESERCIZI COME NELLA CREAZIONE
    */

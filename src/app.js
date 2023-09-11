@@ -16,6 +16,7 @@ app.use(cookieParser());
 app.use(apiPath + "/auth", require("./routes/api/auth"));
 app.use(apiPath + "/:userId/workouts", require("./routes/api/workouts"))
 app.use(apiPath + "/exercises", require("./routes/api/exercises"))
+app.use(apiPath + "/users", require("./routes/api/users"))
 
 mongoose.connection.once("open", () => {
   console.log("DB connected");

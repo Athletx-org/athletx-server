@@ -42,7 +42,7 @@ async function signup(req, res) {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.create({
+    const userCreated = await User.create({
       email,
       password: hashedPassword,
     });
@@ -56,6 +56,7 @@ async function signup(req, res) {
       birthdate,
       gender,
       password: hashedPassword,
+      userId: userCreated._id
     });    
 
     return res.sendStatus(201);

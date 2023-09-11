@@ -4,7 +4,7 @@ const workoutsController = require("../../controllers/workoutsController");
 const authenticate = require("../../middleware/authJwt");
 
 router.get("/", authenticate, workoutsController.getAllWorkouts);
-router.get("/:workoutId", authenticate, workoutsController.getWorkout);
+router.get("/:workoutId", workoutsController.getWorkout);
 router.get("/info/current", workoutsController.getCurrentWorkout)
 router.post("/", authenticate, workoutsController.createWorkout);
 router.post("/current", authenticate, workoutsController.setCurrentWorkout)
