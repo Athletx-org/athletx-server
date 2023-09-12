@@ -20,10 +20,10 @@ async function createNewGoal(req, res) {
 }
 
 async function setGoalAsAchieved(req, res) {
-  await Goal.updateOne(
-    { _id: new ObjectId(req.params.goalId) }, // Filtra il documento in base all'ID
-    { $set: { achieved: true } }
-  );
+  await Goal.findOneAndUpdate(
+    { _id: req.params.goalId },
+    { achieved: true }
+  )
   res.sendStatus(200);
 }
 module.exports = { getAllGoals, createNewGoal, setGoalAsAchieved };

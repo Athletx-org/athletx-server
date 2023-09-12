@@ -30,14 +30,14 @@ const UserInfoSchema = Schema({
     required: true,
   },
 
-  birthdate: {
-    type: Date,
-    required: true,
-  },
-
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
+  },
+  
+  profilePic: {
+    type: String,
+    required: true
   }
   
 });

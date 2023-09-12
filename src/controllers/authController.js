@@ -42,22 +42,10 @@ async function signup(req, res) {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userCreated = await User.create({
+    await User.create({
       email,
       password: hashedPassword,
     });
-
-    await UserInfo.create({
-      email,
-      name,
-      surname,
-      height,
-      weight,
-      birthdate,
-      gender,
-      password: hashedPassword,
-      userId: userCreated._id
-    });    
 
     return res.sendStatus(201);
   } catch (error) {
@@ -102,9 +90,10 @@ async function login(req, res) {
 async function logout(req, res) {
   const body = req.body;
   const email = body.email;
-  const user = await User.findOne({ email: email }).exec();
-  user.token = null;
-  await user.save();
+  await User.findOneAndUpdate(
+    { email: email },
+    { token: null}
+    ).exec();
   res.sendStatus(204);
 }
 
