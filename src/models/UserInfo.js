@@ -7,27 +7,37 @@ const UserInfoSchema = Schema({
 
   name: {
     type: String,
-    required: true,
+    required: false,
   },
 
   surname: {
     type: String,
-    required: true,
+    required: false,
   },
 
   height: {
     type: Number,
-    required: true,
+    required: false,
+  },
+
+  city: {
+    type: String,
+    required: false,
+  },
+
+  country: {
+    type: String,
+    required: false,
+  },
+
+  bio: {
+    type: String,
+    required: false,
   },
 
   weight: {
     type: Number,
-    required: true,
-  },
-
-  gender: {
-    type: String,
-    required: true,
+    required: false,
   },
 
   userId: {

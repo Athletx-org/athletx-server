@@ -19,7 +19,9 @@ async function updateUserInfo(req, res) {
       surname: data.surname,
       height: data.height,
       weight: data.weight,
-      gender: data.gender,
+      city: data.city,
+      country: data.country,
+      bio: data.bio,
       profilePic: '/uploads/' + req.params.userId
     },
     {
