@@ -5,7 +5,18 @@ const ExerciseExecution = require("../models/ExerciseExecution");
 const ActiveWorkout = require("../models/ActiveWorkout");
 
 async function getAllWorkouts(req, res) {
-  Workout.find({ userId: req.params.userId }).then((workout, err) => {
+  Workout.find({ userId: req.params.userId }).populate({
+    path: "trainings",
+    model: "Training",
+    populate: {
+      path: "exercises",
+      model: "ExerciseExecution",
+      populate: {
+        path: "exerciseId",
+        model: "Exercise",
+      },
+    },
+  }).then((workout, err) => {
     if (err) {
       console.error("Errore nella query di ricerca:", err);
       return res.status(500).json({ error: "Errore nella query di ricerca" });
