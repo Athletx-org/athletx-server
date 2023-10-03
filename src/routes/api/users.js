@@ -6,5 +6,6 @@ const upload = require('../../middleware/multer')
 
 router.get("/info/:userId", authenticate, userController.getUserInfo);
 router.patch("/info/:userId", authenticate, upload.single('profilePic'), userController.updateUserInfo)
-
+router.get("/improvements/:userId", authenticate,userController.getUserImprovement )
+router.post("/improvements/:userId", authenticate,userController.addUserImprovement )
 module.exports = router;

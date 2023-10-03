@@ -35,7 +35,7 @@ const UserInfoSchema = Schema({
     required: false,
   },
 
-  weight: {
+  age: {
     type: Number,
     required: false,
   },
