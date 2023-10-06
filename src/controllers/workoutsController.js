@@ -5,7 +5,30 @@ const ExerciseExecution = require("../models/ExerciseExecution");
 const ActiveWorkout = require("../models/ActiveWorkout");
 
 async function getAllWorkouts(req, res) {
-  Workout.find({ userId: req.params.userId }).populate({
+  Workout.find({ userId: req.params.userId })
+    .populate({
+      path: "trainings",
+      model: "Training",
+      populate: {
+        path: "exercises",
+        model: "ExerciseExecution",
+        populate: {
+          path: "exerciseId",
+          model: "Exercise",
+        },
+      },
+    })
+    .then((workout, err) => {
+      if (err) {
+        console.error("Errore nella query di ricerca:", err);
+        return res.status(500).json({ error: "Errore nella query di ricerca" });
+      }
+      res.json(workout);
+    });
+}
+
+async function copyWorkout(req, res) {
+  const workout = await Workout.findById(req.params.workoutId).populate({
     path: "trainings",
     model: "Training",
     populate: {
@@ -16,13 +39,26 @@ async function getAllWorkouts(req, res) {
         model: "Exercise",
       },
     },
-  }).then((workout, err) => {
-    if (err) {
-      console.error("Errore nella query di ricerca:", err);
-      return res.status(500).json({ error: "Errore nella query di ricerca" });
-    }
-    res.json(workout);
   });
+  if (!workout) {
+    console.error("Errore nella query di ricerca:");
+    return res.status(500).json({ error: "Errore nella query di ricerca" });
+  }
+  const newWorkout = await Workout.create({
+    name: workout.name,
+    difficulty: workout.difficulty,
+    description: workout.description,
+    duration: workout.duration,
+    userId: req.params.userId,
+  });
+
+  for (const train of workout.trainings) {
+    const training = await createTraining(newWorkout.id);
+    for (const exercise of train.exercises) {
+      await createExerciseExecution(training.id, exercise);
+    }
+  }
+  res.sendStatus(200);
 }
 
 async function getWorkout(req, res) {
@@ -49,30 +85,33 @@ async function getWorkout(req, res) {
 }
 
 async function getCurrentWorkout(req, res) {
-  ActiveWorkout.findOne({ userId: req.params.userId }).populate("workoutId").then((workout, err) => {
-    if (err) {
-      console.error("Errore nella query di ricerca:", err);
-      return res.status(500).json({ error: "Errore nella query di ricerca" });
-    } else {
-      res.json(workout);
-    }
-  });
+  ActiveWorkout.findOne({ userId: req.params.userId })
+    .populate("workoutId")
+    .then((workout, err) => {
+      if (err) {
+        console.error("Errore nella query di ricerca:", err);
+        return res.status(500).json({ error: "Errore nella query di ricerca" });
+      } else {
+        res.json(workout);
+      }
+    });
 }
 
 async function setCurrentWorkout(req, res) {
-  const data = req.body
+  const data = req.body;
   await ActiveWorkout.findOneAndUpdate(
-    {userId: data.userId },
-    { workoutId: data.workoutId,
+    { userId: data.userId },
+    {
+      workoutId: data.workoutId,
       startingDate: data.startingDate,
-      endingDate: data.endingDate
+      endingDate: data.endingDate,
     },
-    { 
+    {
       new: true,
-      upsert: true
+      upsert: true,
     }
-  )
-  res.sendStatus(200)
+  );
+  res.sendStatus(200);
 }
 
 async function createWorkout(req, res) {
@@ -125,7 +164,7 @@ async function updateWorkout(req, res) {
         duration: data.duration,
         userId: req.params.userId,
       });
-    
+
       for (const train of data.trainings) {
         const training = await createTraining(updatedWorkout.id);
         for (const exercise of train.exercises) {
@@ -150,7 +189,7 @@ async function deleteWorkout(req, res) {
     if (!workout) {
       return res.status(404).json({ message: "Workout not found" });
     }
-    await ActiveWorkout.deleteMany({workoutId: workoutId})
+    await ActiveWorkout.deleteMany({ workoutId: workoutId });
     const trainingIds = workout.trainings;
 
     for (const trainingId of trainingIds) {
@@ -222,5 +261,6 @@ module.exports = {
   setCurrentWorkout,
   createWorkout,
   deleteWorkout,
-  updateWorkout
+  updateWorkout,
+  copyWorkout,
 };
