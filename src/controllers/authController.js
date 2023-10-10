@@ -6,31 +6,21 @@ const tokenService = require("../services/token-service");
 async function signup(req, res) {
   const {
     email,
-    name,
-    surname,
-    height,
-    weight,
-    birthdate,
-    gender,
     password,
-    password_confirm,
+    confirmPassword,
   } = req.body;
+
+  console.log(req.body)
 
   if (
     !email ||
-    !name ||
-    !surname ||
-    (!height && User === Athlete) ||
-    (!weight && User === Athlete) ||
-    !birthdate ||
-    !gender ||
     !password ||
-    !password_confirm
+    !confirmPassword
   ) {
     return res.status(422).json({ message: "Invalid fields" });
   }
 
-  if (password !== password_confirm) {
+  if (password !== confirmPassword) {
     return res.status(422).json({ message: "Passwords do not match" });
   }
 
