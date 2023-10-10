@@ -1,3 +1,15 @@
+## [1.0.1](https://github.com/AthletX-org/athletx-server/compare/1.0.0...1.0.1) (2023-10-10)
+
+
+### Dependency updates
+
+* **deps:** update dependency mongoose to v7.6.1 ([473736d](https://github.com/AthletX-org/athletx-server/commit/473736d99b731f4a2fac0fc8ded3ff34ac6a0369))
+
+
+### Documentation
+
+* **api:** add sample api ([a3f826d](https://github.com/AthletX-org/athletx-server/commit/a3f826dc8de9543b107ac737a8842c39945a18d7))
+
 ## 1.0.0 (2023-10-10)
 
 
