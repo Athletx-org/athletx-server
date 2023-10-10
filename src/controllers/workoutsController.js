@@ -55,7 +55,24 @@ async function copyWorkout(req, res) {
   for (const train of workout.trainings) {
     const training = await createTraining(newWorkout.id);
     for (const exercise of train.exercises) {
-      await createExerciseExecution(training.id, exercise);
+      ExerciseExecution.create({
+        series: exercise.series,
+        reps: exercise.reps,
+        rest: exercise.rest,
+        duration: exercise.duration,
+        exerciseId: exercise.exerciseId._id,
+      }).then((execution) => {
+        return Training.findByIdAndUpdate(
+          training._id,
+          {
+            $push: { exercises: execution._id },
+          },
+          {
+            new: true,
+            useFindAndModify: true,
+          }
+        );
+      });
     }
   }
   res.sendStatus(200);
@@ -206,10 +223,6 @@ async function deleteWorkout(req, res) {
     }
     const deletedWorkout = await Workout.findByIdAndRemove(workoutId);
     if (deletedWorkout) {
-      console.log(
-        "Workout and associated data deleted successfully:",
-        deletedWorkout
-      );
       return res.sendStatus(204);
     } else {
       return res.status(404).json({ message: "Workout not found" });
@@ -228,7 +241,7 @@ async function createExerciseExecution(trainingId, exerciseExecution) {
         $push: { exercises: execution.id },
       },
       {
-        new: false,
+        new: true,
         useFindAndModify: true,
       }
     );
