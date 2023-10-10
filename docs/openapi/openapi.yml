@@ -11,3 +11,19 @@ info:
   license:
     name: MIT License
     url: 'https://opensource.org/license/mit/'
+
+tags:
+  - name: Auth API
+    description: This is the available API to authenticate users.
+
+paths:
+  /auth:
+    post:
+      tags:
+        - Auth API
+      summary: auth
+      operationId: authUser
+      description: Auth user
+      responses:
+        '200':
+          description: authenticated
