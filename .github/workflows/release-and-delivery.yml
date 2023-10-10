@@ -13,6 +13,8 @@ on:
 
 jobs:
   release-and-delivery:
+    permissions:
+        packages: write
     concurrency:
         # Allow only one release at a time.
         group: release-and-delivery-${{ github.event.number || github.ref }}
