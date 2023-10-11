@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const tokenDuration = process.env.JWT_DURATION;
+const tokenDuration = process.env.jwtDuration;
 
 function generateToken(user) {
   return new Promise(function (resolve, reject) {
