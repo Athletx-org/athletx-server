@@ -1,3 +1,20 @@
+## [1.0.2](https://github.com/AthletX-org/athletx-server/compare/1.0.1...1.0.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* add env file in ci ([e024490](https://github.com/AthletX-org/athletx-server/commit/e02449002a15534e4f6b22fb19632584e4cc13b7))
+
+
+### Documentation
+
+* add auth api ([c4dff5b](https://github.com/AthletX-org/athletx-server/commit/c4dff5b7beeae22dc6c0af3e2ba27c6c7ed21244))
+
+
+### General maintenance
+
+* update README.md ([b3e49f5](https://github.com/AthletX-org/athletx-server/commit/b3e49f5b1da826495b50aec1d972569f1a6da349))
+
 ## [1.0.1](https://github.com/AthletX-org/athletx-server/compare/1.0.0...1.0.1) (2023-10-10)
 
 
