@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/AthletX-org/athletx-server/compare/1.0.2...1.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* create env file before doing release ([4b6817a](https://github.com/AthletX-org/athletx-server/commit/4b6817aa737277b4197834cd8eb298ee86079232))
+
 ## [1.0.2](https://github.com/AthletX-org/athletx-server/compare/1.0.1...1.0.2) (2023-10-11)
 
 
