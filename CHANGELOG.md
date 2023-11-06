@@ -1,3 +1,33 @@
+## [1.0.4](https://github.com/AthletX-org/athletx-server/compare/1.0.3...1.0.4) (2023-11-06)
+
+
+### Dependency updates
+
+* **deps:** update dependency mongoose to v7.6.2 ([9242df8](https://github.com/AthletX-org/athletx-server/commit/9242df80e4cf1c79b4e629a0448259a725fa3c8a))
+* **deps:** update dependency mongoose to v7.6.3 ([ac46aae](https://github.com/AthletX-org/athletx-server/commit/ac46aaeef0c029f27dff091caf4436ef5df390a0))
+* **deps:** update dependency mongoose to v7.6.4 ([f347254](https://github.com/AthletX-org/athletx-server/commit/f34725435c5eb83686da270a80ea5e01c53db619))
+* **deps:** update dependency mongoose to v8 ([721fbdf](https://github.com/AthletX-org/athletx-server/commit/721fbdf925ba27457da7745c9292d53785389991))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.69 ([82110cc](https://github.com/AthletX-org/athletx-server/commit/82110cc5790100b703289d0830234b3e1ef29c7c))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.70 ([c9ba55b](https://github.com/AthletX-org/athletx-server/commit/c9ba55bd1d90c740a1e564794c69a63b9f2aa18e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.71 ([9764478](https://github.com/AthletX-org/athletx-server/commit/976447834be93f579405368c7f39bfc441702bb3))
+* **deps:** update node.js to 20.9 ([96c02b2](https://github.com/AthletX-org/athletx-server/commit/96c02b25ba4436b8b961f137435e473d00862a04))
+* **deps:** update node.js to v20 ([23dc7b0](https://github.com/AthletX-org/athletx-server/commit/23dc7b0057af2e506e9a208d636a9e97e88a6968))
+
+
+### Documentation
+
+* **openapi:** add api documentation ([14a33ca](https://github.com/AthletX-org/athletx-server/commit/14a33caa2cbfd6520ccccdc47ecd656d2ce8d5af))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v4 ([ff6e613](https://github.com/AthletX-org/athletx-server/commit/ff6e6133181b0fddd88f993e9a2ccae6cf928a36))
+
+
+### Refactoring
+
+* refactor code ([04ad7c1](https://github.com/AthletX-org/athletx-server/commit/04ad7c19e6a0c0174772f7661cffe5271eaac322))
+
 ## [1.0.3](https://github.com/AthletX-org/athletx-server/compare/1.0.2...1.0.3) (2023-10-11)
 
 
