@@ -15,9 +15,17 @@ info:
 tags:
   - name: Auth API
     description: This is the available API to authenticate users.
+  - name: Exercises API
+    description: This is the available API to manage exercises.
+  - name: Users API
+    description: This is the available API to manage users.
+  - name: Goals API
+    description: This is the available API to create and retrieve user goals.
+  - name: Workouts API
+    description: This is the available API to create, edit and delete user workouts.
 
 paths:
-  /signup:
+  /auth/signup:
     post:
       tags:
         - Auth API
@@ -31,10 +39,10 @@ paths:
           description: User exists
         '422':
           description: Invalid fields
-  /login:
+  /auth/login:
     post:
       tags:
-        - Auth 
+        - Auth API
       summary: User Login
       operationId: loginUser
       description: Authenticate a User
@@ -45,13 +53,155 @@ paths:
           description: Invalid Credentials
         '422':
           description: Invalid fields
-  /logout:
+  /auth/logout:
     post:
       tags:
-        - Auth 
+        - Auth API
       summary: User Logout
       operationId: logoutUser
       description: Deauthenticate a User
       responses:
         '201':
             description: User logged out
+  /exercises:
+    get:
+      tags:
+        - Exercises API
+      summary: Get all exercises
+      operationId: getExercises
+      description: Get all exercises
+      responses:
+        '200':
+            description: The list of exercises
+        '500':
+            description: Error in the query fields
+  /:userId/goals:
+    get:
+      tags:
+        - Goals API
+      summary: Get all user goals
+      operationId: getUserGoals
+      description: Get all user goals
+      responses:
+        '200':
+            description: The list of user goals
+        '500':
+            description: Error in the query fields
+    post:
+      tags:
+        - Goals API
+      summary: Add new user goal
+      operationId: addGoal
+      description: Add new user goal
+      responses:
+        '204':
+            description: goal added
+  /:userId/goals/:goalId:
+     post:
+      tags:
+        - Goals API
+      summary: Set goal as achieved
+      operationId: setGoalAsAchieved
+      description: Set goal as achieved
+      responses:
+        '204':
+            description: goal set as achieved        
+  /users/info/:userId:
+    get:
+      tags:
+        - Users API
+      summary: Get user info
+      operationId: getUserInfo
+      description: Get user info
+      responses:
+        '200':
+            description: The user
+        '500':
+            description: Error in the query fields
+    patch:
+      tags:
+        - Users API
+      summary: Update user info
+      operationId: updateUserInfo
+      description: Update user info
+      responses:
+        '204':
+            description: user updated
+        '500':
+            description: Error in the query fields
+  /users/improvements/:userId:
+    get:
+      tags:
+        - Users API
+      summary: Get user improvements
+      operationId: getUserImprovement
+      description: Get user improvement
+      responses:
+        '200':
+            description: The user improvements
+        '500':
+            description: Error in the query fields
+    post:
+      tags:
+        - Users API
+      summary: Add user improvements
+      operationId: addUserImprovement
+      description: Add user improvement
+      responses:
+        '204':
+            description: improvement added
+  /:userId/workouts:
+    get:
+      tags:
+        - Workouts API
+      summary: Get all workouts
+      operationId: getWorkouts
+      description: Get all workouts
+      responses:
+        '200':
+            description: The list of workouts
+        '500':
+            description: Error in the query fields
+  /:userId/workouts/:workoutId:
+    get:
+      tags:
+        - Workouts API
+      summary: Get workout
+      operationId: getWorkout
+      description: Get workout
+      responses:
+        '200':
+            description: The workout
+        '500':
+            description: Error in the query fields
+    patch:
+      tags:
+        - Workouts API
+      summary: Update workout
+      operationId: updateWorkout
+      description: Update workout
+      responses:
+        '204':
+            description: workout updated
+  /:userId/workouts/info/current:
+    get:
+      tags:
+        - Workouts API
+      summary: Get current workout
+      operationId: getCurrentWorkout
+      description: Get current workout
+      responses:
+        '200':
+            description: The current workout
+        '500':
+            description: Error in the query fields
+    post:
+      tags:
+        - Workouts API
+      summary: Set current workout
+      operationId: setCurrentWorkout
+      description: set current workout
+      responses:
+        '204':
+            description: current workout update
+            
