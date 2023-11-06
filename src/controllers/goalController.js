@@ -14,7 +14,7 @@ async function createNewGoal(req, res) {
     userId: req.params.userId,
   });
 
-  res.sendStatus(200);
+  res.sendStatus(204);
 }
 
 async function setGoalAsAchieved(req, res) {
@@ -22,6 +22,6 @@ async function setGoalAsAchieved(req, res) {
     { _id: req.params.goalId },
     { achieved: true }
   )
-  res.sendStatus(200);
+  res.sendStatus(204);
 }
 module.exports = { getAllGoals, createNewGoal, setGoalAsAchieved };
