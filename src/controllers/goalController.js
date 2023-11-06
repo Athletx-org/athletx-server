@@ -1,6 +1,4 @@
 const Goal = require("../models/Goal");
-const ObjectId = require('mongoose').Types.ObjectId;
-
 
 async function getAllGoals(req, res) {
   const goals = await Goal.find({ userId: req.params.userId });

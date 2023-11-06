@@ -1,6 +1,5 @@
 const Workout = require("../models/Workout");
 const Training = require("../models/Training");
-const Exercise = require("../models/Exercise");
 const ExerciseExecution = require("../models/ExerciseExecution");
 const ActiveWorkout = require("../models/ActiveWorkout");
 

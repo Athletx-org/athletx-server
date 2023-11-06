@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const UserInfo = require("../models/UserInfo"); 
 const tokenService = require("../services/token-service");
 
 async function signup(req, res) {
@@ -9,8 +8,6 @@ async function signup(req, res) {
     password,
     confirmPassword,
   } = req.body;
-
-  console.log(req.body)
 
   if (
     !email ||
@@ -49,7 +46,7 @@ async function login(req, res) {
 
   if (!email || !password) {
     return res.status(422).json({ message: "Invalid fields" });
-  }
+  } 
 
   const user = await User.findOne({ email }).exec();
 
