@@ -27,7 +27,7 @@
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
-    "semantic-release-preconfigured-conventional-commits": "1.1.83"
+    "semantic-release-preconfigured-conventional-commits": "1.1.84"
   },
   "engines": {
     "node": "20.10"
