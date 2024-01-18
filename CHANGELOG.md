@@ -1,3 +1,40 @@
+## [1.0.5](https://github.com/AthletX-org/athletx-server/compare/1.0.4...1.0.5) (2024-01-18)
+
+
+### Dependency updates
+
+* **deps:** update dependency mongoose to v8.0.1 ([c97e052](https://github.com/AthletX-org/athletx-server/commit/c97e0528b92c95d08c905d924dfd1d3b69695ad3))
+* **deps:** update dependency mongoose to v8.0.2 ([0fedff8](https://github.com/AthletX-org/athletx-server/commit/0fedff85d1e68e19dbd92aba09a75e6dcc43d25f))
+* **deps:** update dependency mongoose to v8.0.3 ([47c095d](https://github.com/AthletX-org/athletx-server/commit/47c095df9d65fa490fe662d81ccff559bfd08261))
+* **deps:** update dependency mongoose to v8.0.4 ([31155dc](https://github.com/AthletX-org/athletx-server/commit/31155dcbcc7df17405484e1b419f0b20e023567f))
+* **deps:** update dependency mongoose to v8.1.0 ([e94d8bd](https://github.com/AthletX-org/athletx-server/commit/e94d8bd20b3bf729e0438748adc79c53deb408f7))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.72 ([7fd5709](https://github.com/AthletX-org/athletx-server/commit/7fd5709850239b27e8a2e4c3154a759fb8bb90dd))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.73 ([c2efeb8](https://github.com/AthletX-org/athletx-server/commit/c2efeb88beb7d03470ea578caf1981d9815c8087))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.74 ([46ea82d](https://github.com/AthletX-org/athletx-server/commit/46ea82d612112699cd59f1edb9e3b670e0ceb88e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.75 ([69d7f76](https://github.com/AthletX-org/athletx-server/commit/69d7f769f17ab7d7cfb7e1e1b90a1cf04ffe9e42))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.76 ([1a4aeb7](https://github.com/AthletX-org/athletx-server/commit/1a4aeb7effccbcee24fc93c1fd2ce5a40849b2a6))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.77 ([38fd816](https://github.com/AthletX-org/athletx-server/commit/38fd816b58b94ae093dca60d4ca14800e1e9c0ba))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.78 ([e81ec48](https://github.com/AthletX-org/athletx-server/commit/e81ec4820e6a4d8e6245a4a7943927e9d2757a78))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.79 ([dfa0a97](https://github.com/AthletX-org/athletx-server/commit/dfa0a975f2b1d050deae4c2a89741320b230590e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.80 ([762b9a1](https://github.com/AthletX-org/athletx-server/commit/762b9a1262c848f7606273c8d133271e3616d775))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.81 ([4aa8ddd](https://github.com/AthletX-org/athletx-server/commit/4aa8ddd83848c2ca4863d9014e160ed67c2e9e0c))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.82 ([6161fa0](https://github.com/AthletX-org/athletx-server/commit/6161fa079b62b8149661e0f9c85ee7b0e3c6112d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.83 ([adc7649](https://github.com/AthletX-org/athletx-server/commit/adc76493d28c120b598d1a14eac8f37ffa8afc28))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.84 ([396b268](https://github.com/AthletX-org/athletx-server/commit/396b2682530e192c25e33cec175724013d2f4263))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.85 ([07466f6](https://github.com/AthletX-org/athletx-server/commit/07466f6e89b9911737e0697b78836ade60cc4d98))
+* **deps:** update node.js to 20.10 ([ac41dfa](https://github.com/AthletX-org/athletx-server/commit/ac41dfa4cdb4c2cfd9ddf329710b998eca9b5c0a))
+* **deps:** update node.js to 20.11 ([e3e5141](https://github.com/AthletX-org/athletx-server/commit/e3e5141ae97f73e1fbf09160f819f514b8163ea1))
+
+
+### Bug Fixes
+
+* create uploads dir in server ([a007fc4](https://github.com/AthletX-org/athletx-server/commit/a007fc4a239fa0ec31b7e7b3fe88e9e4d0dbb621))
+
+
+### Build and continuous integration
+
+* **deps:** update smartoperatingblock/release-and-delivery-action action to v1.0.11 ([82a9496](https://github.com/AthletX-org/athletx-server/commit/82a949650159ca4b58dcdb5d4901e967e48fd2fd))
+
 ## [1.0.4](https://github.com/AthletX-org/athletx-server/compare/1.0.3...1.0.4) (2023-11-06)
 
 
