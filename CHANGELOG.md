@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/AthletX-org/athletx-server/compare/1.0.5...1.0.6) (2024-01-18)
+
+
+### Bug Fixes
+
+* rollback mongoose version ([3fd62bb](https://github.com/AthletX-org/athletx-server/commit/3fd62bbf9a8a73a2e0b63a03797fe9ad6ad05a5a))
+
 ## [1.0.5](https://github.com/AthletX-org/athletx-server/compare/1.0.4...1.0.5) (2024-01-18)
 
 
